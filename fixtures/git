@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+args=$*
+
+if [ "${args}" = "rev-parse --abbrev-ref HEAD" ]; then
+    echo "current-branch-123456789"
+fi
