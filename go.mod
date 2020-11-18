@@ -7,4 +7,5 @@ require (
 	github.com/onsi/ginkgo v1.14.2
 	github.com/onsi/gomega v1.10.3
 	golang.org/x/sys v0.0.0-20201110211018-35f3e6cf4a65 // indirect
+	gopkg.in/salsita/go-pivotaltracker.v2 v2.1.0
 )

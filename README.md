@@ -10,3 +10,15 @@ With the power of `git-story-branch`, this allows you to:
 4. ~~Be reminded if you haven't watered your plants recently~~
 
 At least, it will, some day.
+
+## Installation
+
+```sh
+go build ./cli/main.go
+```
+
+## Running locally
+```sh
+export TRACKER_API_TOKEN="YOUR PIVOTAL TRACKER API TOKEN" # https://www.pivotaltracker.com/help/articles/api_token/
+./main # assuming the library has been built and you're in a branch that has a story ID at the end
+```

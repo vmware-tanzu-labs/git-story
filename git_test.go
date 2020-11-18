@@ -21,7 +21,7 @@ var _ = Describe("Git", func() {
 	})
 
 	It("should know the current branch", func() {
-		branchName := storybranch.GetBranchName()
+		branchName := storybranch.NewRepository().GetBranchName()
 		Expect(branchName).To(Equal("current-branch-123456789"))
 	})
 })
