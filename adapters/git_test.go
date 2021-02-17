@@ -1,4 +1,4 @@
-package storybranch_test
+package adapters_test
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	storybranch "github.com/carpeliam/git-story-branch"
+	"github.com/carpeliam/git-story-branch/adapters"
 )
 
 var _ = Describe("Git", func() {
@@ -21,7 +21,7 @@ var _ = Describe("Git", func() {
 	})
 
 	It("should know the current branch", func() {
-		branchName := storybranch.NewRepository().GetBranchName()
+		branchName := adapters.NewRepository().GetBranchName()
 		Expect(branchName).To(Equal("current-branch-123456789"))
 	})
 })

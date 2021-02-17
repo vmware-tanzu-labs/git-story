@@ -1,4 +1,4 @@
-package storybranch_test
+package usecases_test
 
 import (
 	"testing"
@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-func TestGitStoryBranch(t *testing.T) {
+func TestUsecases(t *testing.T) {
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "GitStoryBranch Suite")
+	RunSpecs(t, "Usecases Suite")
 }

@@ -1,4 +1,4 @@
-package storybranch
+package adapters
 
 import (
 	"os/exec"
@@ -12,11 +12,6 @@ type GitRepository struct{}
 func (repo GitRepository) GetBranchName() string {
 	output, _ := exec.Command("git", "rev-parse", "--abbrev-ref", "HEAD").Output()
 	return strings.TrimSpace(string(output))
-}
-
-// Repository comment
-type Repository interface {
-	GetBranchName() string
 }
 
 // NewRepository creates  a new repository

@@ -4,18 +4,19 @@ import (
 	"fmt"
 	"os"
 
-	storybranch "github.com/carpeliam/git-story-branch"
+	"github.com/carpeliam/git-story-branch/adapters"
+	"github.com/carpeliam/git-story-branch/usecases"
 	"gopkg.in/salsita/go-pivotaltracker.v2/v5/pivotal"
 )
 
-func newTracker() *storybranch.PivotalTracker {
+func newTracker() usecases.Tracker {
 	apiToken := os.Getenv("TRACKER_API_TOKEN")
 	client := pivotal.NewClient(apiToken)
-	return storybranch.NewPivotalTracker(client.Stories)
+	return adapters.NewPivotalTracker(client.Stories)
 }
 
 func main() {
 	tracker := newTracker()
-	description := storybranch.GetStoryDescription(storybranch.NewRepository(), tracker)
-	fmt.Printf(description)
+	story := usecases.GetStory(adapters.NewRepository(), tracker)
+	fmt.Printf("State: %v\n%v",story.State, story.Description)
 }
