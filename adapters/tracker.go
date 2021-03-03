@@ -3,7 +3,7 @@ package adapters
 import (
 	"net/http"
 
-	"github.com/carpeliam/git-story-branch/usecases"
+	"github.com/git-story-branch/git-story-branch/usecases"
 	"gopkg.in/salsita/go-pivotaltracker.v2/v5/pivotal"
 )
 
@@ -21,11 +21,11 @@ type PivotalTracker struct {
 func (tracker PivotalTracker) GetStory(storyID int) *usecases.Story {
 	storyService := tracker.storyService
 	story, _, _ := storyService.GetByID(storyID)
-	
+
 	return &usecases.Story{
-		ID: story.ID,
+		ID:          story.ID,
 		Description: story.Description,
-		State: story.State,
+		State:       story.State,
 	}
 }
 

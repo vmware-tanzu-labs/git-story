@@ -1,4 +1,4 @@
-module github.com/carpeliam/git-story-branch
+module github.com/git-story-branch/git-story-branch
 
 go 1.15
 

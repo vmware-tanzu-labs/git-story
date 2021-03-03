@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/carpeliam/git-story-branch/adapters"
+	"github.com/git-story-branch/git-story-branch/adapters"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"gopkg.in/salsita/go-pivotaltracker.v2/v5/pivotal"

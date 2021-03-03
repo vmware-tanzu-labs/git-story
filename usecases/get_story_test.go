@@ -4,7 +4,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	usecases "github.com/carpeliam/git-story-branch/usecases"
+	usecases "github.com/git-story-branch/git-story-branch/usecases"
 )
 
 type MockGitRepository struct {
@@ -20,9 +20,9 @@ type MockPivotalTrackerReader struct {
 func (mockTrackerReader MockPivotalTrackerReader) GetStory(storyID int) *usecases.Story {
 	if storyID == 1234567890 {
 		return &usecases.Story{
-			ID: 1234567890,
+			ID:          1234567890,
 			Description: "Description",
-			State: "delivered",
+			State:       "delivered",
 		}
 	}
 	return nil

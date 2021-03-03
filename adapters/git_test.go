@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	"github.com/carpeliam/git-story-branch/adapters"
+	"github.com/git-story-branch/git-story-branch/adapters"
 )
 
 var _ = Describe("Git", func() {
