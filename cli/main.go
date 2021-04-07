@@ -17,6 +17,10 @@ func newTracker() usecases.Tracker {
 
 func main() {
 	tracker := newTracker()
-	story := usecases.GetStory(adapters.NewRepository(), tracker)
-	fmt.Printf("State: %v\n%v", story.State, story.Description)
+	story, error := usecases.GetStory(adapters.NewRepository(), tracker)
+	if error != nil {
+		fmt.Print(error)
+	} else {
+		fmt.Printf("State: %v\n%v", story.State, story.Description)
+	}
 }

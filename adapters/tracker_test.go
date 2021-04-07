@@ -52,9 +52,19 @@ var _ = Describe("Tracker", func() {
 		tracker := adapters.NewPivotalTracker(PivotalTrackerStoryServiceStub{})
 		storyID := 123456789
 
-		story := tracker.GetStory(storyID)
+		story, error := tracker.GetStory(storyID)
+		Expect(error).To(BeNil())
 		Expect(story.Description).To(Equal("I dunno, uh, cool story... bro.. or something."))
 		Expect(story.State).To(Equal("delivered"))
 		Expect(story.ID).To(Equal(storyID))
+	})
+
+	It("should return an error if no story can be found for that ID", func() {
+		tracker := adapters.NewPivotalTracker(PivotalTrackerStoryServiceStub{})
+		storyID := 8675309
+
+		story, error := tracker.GetStory(storyID)
+		Expect(story).To(BeNil())
+		Expect(error).NotTo(BeNil())
 	})
 })

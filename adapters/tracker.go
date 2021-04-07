@@ -18,15 +18,18 @@ type PivotalTracker struct {
 }
 
 // GetStory comment
-func (tracker PivotalTracker) GetStory(storyID int) *usecases.Story {
+func (tracker PivotalTracker) GetStory(storyID int) (*usecases.Story, error) {
 	storyService := tracker.storyService
-	story, _, _ := storyService.GetByID(storyID)
+	story, _, error := storyService.GetByID(storyID)
 
+	if error != nil {
+		return nil, error
+	}
 	return &usecases.Story{
 		ID:          story.ID,
 		Description: story.Description,
 		State:       story.State,
-	}
+	}, nil
 }
 
 // NewPivotalTracker returns a new tracker
