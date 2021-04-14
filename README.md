@@ -13,12 +13,36 @@ At least, it will, some day.
 
 ## Installation
 
+1. Configure your tracker API token
+
+```sh
+export TRACKER_API_TOKEN="YOUR PIVOTAL TRACKER API TOKEN" # https://www.pivotaltracker.com/help/articles/api_token/
+```
+
+2. Setup the homebrew tap and install Git-Story
+
+```sh
+$ brew tap git-story-branch/tap
+$ brew install git-story
+```
+
+3. Use the git subcommand to get the story!
+
+
+```sh
+git story-view
+```
+
+## Contributing to Git-Story
+
+To build the source files
+
 ```sh
 go build ./cli/main.go
 ```
 
-## Running locally
+To run
+
 ```sh
-export TRACKER_API_TOKEN="YOUR PIVOTAL TRACKER API TOKEN" # https://www.pivotaltracker.com/help/articles/api_token/
 ./main # assuming the library has been built and you're in a branch that has a story ID at the end
 ```
