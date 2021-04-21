@@ -7,26 +7,27 @@ import (
 	usecases "github.com/git-story-branch/git-story-branch/usecases"
 )
 
-var _ = Describe("Git Tracker name translator", func() {
+var _ = Describe("Browser Opener use case", func() {
 	Describe("when the current branch is a story ID", func() {
-		It("should retrieve a Pivotal Tracker Story based on the current git branch name", func() {
+		It("should open the browser to the URL of the story", func() {
 			mockGitRepo := MockGitRepository{branchName: "Insert Branch Name Here-#1234567890"}
+			browserSpy := &BrowserSpy{}
 			mockTrackerReader := MockPivotalTrackerReader{}
 
-			story, error := usecases.GetStory(mockGitRepo, mockTrackerReader)
+			error := usecases.OpenStory(mockGitRepo, mockTrackerReader, browserSpy)
 
 			Expect(error).To(BeNil())
-			Expect(story.Description).To(Equal("Description"))
+			Expect(browserSpy.openedURL).To(Equal("https://story.com/1234567890"))
 		})
 	})
 	Describe("when the current branch is not a story ID", func() {
 		It("should return an error", func() {
 			mockGitRepo := MockGitRepository{branchName: "main"}
+			browserSpy := &BrowserSpy{}
 			mockTrackerReader := MockPivotalTrackerReader{}
 
-			story, error := usecases.GetStory(mockGitRepo, mockTrackerReader)
+			error := usecases.OpenStory(mockGitRepo, mockTrackerReader, browserSpy)
 
-			Expect(story).To(BeNil())
 			Expect(error).NotTo(BeNil())
 			Expect(error.Error()).To(ContainSubstring("Please run in branch that contains a Pivotal Tracker Story ID"))
 		})
@@ -34,11 +35,11 @@ var _ = Describe("Git Tracker name translator", func() {
 	Describe("when the Tracker API returns an error", func() {
 		It("should return an error", func() {
 			mockGitRepo := MockGitRepository{branchName: "Insert Branch Name Here-#1234567890"}
+			browserSpy := &BrowserSpy{}
 			mockTrackerReader := MockPivotalTrackerReader{isBroken: true}
 
-			story, error := usecases.GetStory(mockGitRepo, mockTrackerReader)
+			error := usecases.OpenStory(mockGitRepo, mockTrackerReader, browserSpy)
 
-			Expect(story).To(BeNil())
 			Expect(error).NotTo(BeNil())
 			Expect(error.Error()).To(ContainSubstring("unable to find that story"))
 		})

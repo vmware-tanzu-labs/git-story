@@ -10,6 +10,7 @@ type Story struct {
 	ID          int
 	Description string
 	State       string
+	URL         string
 }
 
 func getPivotalTrackerTaskID(branchName string) (int, error) {

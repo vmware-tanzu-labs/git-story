@@ -38,7 +38,7 @@ func (pivotalTrackerStoryServiceStub PivotalTrackerStoryServiceStub) GetByID(sto
 			AfterID:       0,
 			IntegrationID: 0,
 			ExternalID:    "ExternalID",
-			URL:           "URL",
+			URL:           "https://best-url-ever.com",
 		}
 		return &newStory, nil, nil
 	}
@@ -57,6 +57,7 @@ var _ = Describe("Tracker", func() {
 		Expect(story.Description).To(Equal("I dunno, uh, cool story... bro.. or something."))
 		Expect(story.State).To(Equal("delivered"))
 		Expect(story.ID).To(Equal(storyID))
+		Expect(story.URL).To(Equal("https://best-url-ever.com"))
 	})
 
 	It("should return an error if no story can be found for that ID", func() {

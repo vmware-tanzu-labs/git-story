@@ -29,6 +29,7 @@ func (tracker PivotalTracker) GetStory(storyID int) (*usecases.Story, error) {
 		ID:          story.ID,
 		Description: story.Description,
 		State:       story.State,
+		URL:         story.URL,
 	}, nil
 }
 
