@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+args=$*
+
+if [ "${args}" = "https://www.url-i-dont-want.com" ]; then
+    exit 1
+fi

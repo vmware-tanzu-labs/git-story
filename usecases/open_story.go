@@ -1,17 +1,18 @@
 package usecases
 
-import "fmt"
+import (
+	"os/exec"
+)
 
 func OpenStory(repo Repository, tracker Tracker, browser Browser) error {
 	story, error := GetStory(repo, tracker)
 	if error != nil {
 		return error
 	}
-	fmt.Println("URL", story.URL)
-	// exec.Command("open", story.URL).Start()
-	return browser.OpenURL(story.URL)
+	_, error = browser.OpenURL(story.URL)
+	return error
 }
 
 type Browser interface {
-	OpenURL(URL string) error
+	OpenURL(URL string) (*exec.Cmd, error)
 }

@@ -1,39 +1,11 @@
 package usecases_test
 
 import (
-	"errors"
-
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
 	usecases "github.com/git-story-branch/git-story-branch/usecases"
 )
-
-type MockGitRepository struct {
-	branchName string
-}
-
-func (mockGitRepo MockGitRepository) GetBranchName() string {
-	return mockGitRepo.branchName
-}
-
-type MockPivotalTrackerReader struct {
-	isBroken bool
-}
-
-func (mockTrackerReader MockPivotalTrackerReader) GetStory(storyID int) (*usecases.Story, error) {
-	if mockTrackerReader.isBroken {
-		return nil, errors.New("unable to find that story")
-	}
-	if storyID == 1234567890 {
-		return &usecases.Story{
-			ID:          1234567890,
-			Description: "Description",
-			State:       "delivered",
-		}, nil
-	}
-	return nil, nil
-}
 
 var _ = Describe("Git Tracker name translator", func() {
 	Describe("when the current branch is a story ID", func() {
