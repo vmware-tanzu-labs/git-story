@@ -51,10 +51,12 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.15
-      - name: Build
-        run: go build -v -o git-story-view ./cli/main.go
+      - name: Build Git Story View
+        run: go build -v -o git-story-view ./cli/git-story-view/main.go
+      - name: Build Git Story Open
+        run: go build -v -o git-story-open ./cli/git-story-open/main.go
       - name: Zip up release
-        run: tar -zvc git-story-view > ${{github.workspace}}/git-story-darwin-x64.tar.gz
+        run: tar -zvc git-story-* > ${{github.workspace}}/git-story-darwin-x64.tar.gz
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         env:
