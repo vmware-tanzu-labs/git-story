@@ -14,6 +14,12 @@ func (repo GitRepository) GetBranchName() string {
 	return strings.TrimSpace(string(output))
 }
 
+func (repo GitRepository) DeleteBranch(branchName string) {
+}
+func (repo GitRepository) GetAllBranchNames() []string {
+	return []string{}
+}
+
 // NewRepository creates  a new repository
 func NewRepository() *GitRepository {
 	return &GitRepository{}

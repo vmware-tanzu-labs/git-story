@@ -37,7 +37,9 @@ type Tracker interface {
 	GetStory(storyID int) (*Story, error)
 }
 
-// Repository comment
+// Repository comment TODO maybe move this to a different file?
 type Repository interface {
 	GetBranchName() string
+	DeleteBranch(branchName string)
+	GetAllBranchNames() []string
 }
