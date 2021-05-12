@@ -17,11 +17,29 @@ func (browserSpy *BrowserSpy) OpenURL(URL string) (*exec.Cmd, error) {
 }
 
 type MockGitRepository struct {
-	branchName string
+	currentBranchName string
+	branchNames       []string
+	deletedBranches   []string
+	erroredBranches   []string
 }
 
-func (mockGitRepo MockGitRepository) GetBranchName() string {
-	return mockGitRepo.branchName
+func (mockGitRepo MockGitRepository) GetCurrentBranchName() string {
+	return mockGitRepo.currentBranchName
+}
+
+func (mockGitRepo MockGitRepository) GetAllBranchNames() []string {
+	return mockGitRepo.branchNames
+}
+
+func (mockGitRepo *MockGitRepository) DeleteBranch(branchName string) error {
+	mockGitRepo.deletedBranches = append(mockGitRepo.deletedBranches, branchName)
+
+	for _, erroredBranch := range mockGitRepo.erroredBranches {
+		if branchName == erroredBranch {
+			return errors.New("Kabooooommmmm!")
+		}
+	}
+	return nil
 }
 
 type MockPivotalTrackerReader struct {
@@ -31,6 +49,22 @@ type MockPivotalTrackerReader struct {
 func (mockTrackerReader MockPivotalTrackerReader) GetStory(storyID int) (*usecases.Story, error) {
 	if mockTrackerReader.isBroken {
 		return nil, errors.New("unable to find that story")
+	}
+	if storyID == 123 {
+		return &usecases.Story{
+			ID:          123,
+			Description: "Description",
+			State:       "accepted",
+			URL:         "https://story.com/123",
+		}, nil
+	}
+	if storyID == 234 {
+		return &usecases.Story{
+			ID:          234,
+			Description: "Description",
+			State:       "started",
+			URL:         "https://story.com/234",
+		}, nil
 	}
 	if storyID == 1234567890 {
 		return &usecases.Story{

@@ -22,8 +22,7 @@ export TRACKER_API_TOKEN="YOUR PIVOTAL TRACKER API TOKEN" # https://www.pivotalt
 2. Setup the homebrew tap and install git-story
 
 ```sh
-$ brew tap git-story-branch/tap
-$ brew install git-story
+brew install git-story-branch/tap/git-story
 ```
 
 ## Usage
@@ -31,21 +30,31 @@ $ brew install git-story
 `git-story` is useful when your git branch name ends in the story ID of the Pivotal Tracker story you're working on:
 
 ```sh
-$ git checkout WIP-some-story-1234567890
+git checkout WIP-some-story-1234567890
 ```
 
 ### git story-view : view the details of a story
 
 ```sh
-$ git story-view
-State: delivered
-Description goes here...
+git story-view
+# Example output:
+# State: delivered
+# Description goes here...
 ```
 
 ### git story-open : open the story URL in your default browser
 
 ```sh
-$ git story-open
+git story-open
+```
+
+### git story-sweep : delete all local branches corresponding to accepted stories, and report any errors in deleting
+
+```sh
+git story-sweep
+# Example output:
+# Could not delete 'WIP-accepted-branch-#987654321', error: Cannot delete branch 'WIP-accepted-branch-#987654321' checked out at '/path'  # This is an expected error when you're deleting the current branch
+# Deleted 'accepted-feature-branch-#123456789'
 ```
 
 ## Contributing to Git-Story

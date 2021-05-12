@@ -21,7 +21,23 @@ var _ = Describe("Git", func() {
 	})
 
 	It("should know the current branch", func() {
-		branchName := adapters.NewRepository().GetBranchName()
+		branchName := adapters.NewRepository().GetCurrentBranchName()
 		Expect(branchName).To(Equal("current-branch-123456789"))
+	})
+
+	It("should get all branch names", func() {
+		branchNames := adapters.NewRepository().GetAllBranchNames()
+		Expect(branchNames).To(Equal([]string{"main", "some-branch-#123"}))
+	})
+
+	It("should delete a branch", func() {
+		error := adapters.NewRepository().DeleteBranch("some-accepted-branch-123456789")
+		Expect(error).To(BeNil())
+	})
+
+	It("should fail to delete when there is a nonexistent branch", func() {
+		error := adapters.NewRepository().DeleteBranch("some-nonexistent-branch")
+		Expect(error).NotTo(BeNil())
+		Expect(error.Error()).To(Equal("error: branch 'some-nonexistent-branch' not found."))
 	})
 })

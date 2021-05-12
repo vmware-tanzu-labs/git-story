@@ -6,13 +6,6 @@ import (
 	"strconv"
 )
 
-type Story struct {
-	ID          int
-	Description string
-	State       string
-	URL         string
-}
-
 func getPivotalTrackerTaskID(branchName string) (int, error) {
 	re := regexp.MustCompile(`\d+$`)
 	taskIDString := re.FindString(branchName)
@@ -22,22 +15,16 @@ func getPivotalTrackerTaskID(branchName string) (int, error) {
 
 // GetStory comment
 func GetStory(repo Repository, tracker Tracker) (*Story, error) {
-	currentBranchName := repo.GetBranchName()
-	storyID, branchError := getPivotalTrackerTaskID(currentBranchName)
+	currentBranchName := repo.GetCurrentBranchName()
+	return GetStoryByBranchName(currentBranchName, tracker)
+}
+
+func GetStoryByBranchName(branchName string, tracker Tracker) (*Story, error) {
+	storyID, branchError := getPivotalTrackerTaskID(branchName)
 
 	if branchError != nil {
-		return nil, errors.New("Please run in branch that contains a Pivotal Tracker Story ID")
+		return nil, errors.New("please run in branch that contains a Pivotal Tracker Story ID")
 	}
 
 	return tracker.GetStory(storyID)
-}
-
-// Tracker comment
-type Tracker interface {
-	GetStory(storyID int) (*Story, error)
-}
-
-// Repository comment
-type Repository interface {
-	GetBranchName() string
 }
