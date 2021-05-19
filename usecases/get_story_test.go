@@ -28,7 +28,7 @@ var _ = Describe("Git Tracker name translator", func() {
 
 			Expect(story).To(BeNil())
 			Expect(error).NotTo(BeNil())
-			Expect(error.Error()).To(ContainSubstring("Please run in branch that contains a Pivotal Tracker Story ID"))
+			Expect(error.Error()).To(ContainSubstring("please run in branch that contains a Pivotal Tracker Story ID"))
 		})
 	})
 	Describe("when the Tracker API returns an error", func() {

@@ -1,5 +1,7 @@
 package usecases
 
+// import "log"
+
 // get all the branch names
 
 // call get story on each of those things
@@ -9,5 +11,13 @@ package usecases
 // delete them if they are
 
 func SweepAcceptedStories(repo Repository, tracker Tracker) {
+	branchNames := repo.GetAllBranchNames()
 
+	for _, branchName := range branchNames {
+		story, _ := GetStoryByBranchName(branchName, tracker)
+
+		if story != nil && story.State == "accepted" {
+			repo.DeleteBranch(branchName)
+		}
+	}
 }

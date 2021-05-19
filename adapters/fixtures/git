@@ -5,3 +5,8 @@ args=$*
 if [ "${args}" = "rev-parse --abbrev-ref HEAD" ]; then
     echo "current-branch-123456789"
 fi
+
+if [ "${args}" = "--no-pager branch --format '%(refname:short)'" ]; then
+    echo "main"
+    echo "some-branch-#123"
+fi

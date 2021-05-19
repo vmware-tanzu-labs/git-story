@@ -23,10 +23,14 @@ func getPivotalTrackerTaskID(branchName string) (int, error) {
 // GetStory comment
 func GetStory(repo Repository, tracker Tracker) (*Story, error) {
 	currentBranchName := repo.GetBranchName()
-	storyID, branchError := getPivotalTrackerTaskID(currentBranchName)
+	return GetStoryByBranchName(currentBranchName, tracker)
+}
+
+func GetStoryByBranchName(branchName string, tracker Tracker) (*Story, error) {
+	storyID, branchError := getPivotalTrackerTaskID(branchName)
 
 	if branchError != nil {
-		return nil, errors.New("Please run in branch that contains a Pivotal Tracker Story ID")
+		return nil, errors.New("please run in branch that contains a Pivotal Tracker Story ID")
 	}
 
 	return tracker.GetStory(storyID)

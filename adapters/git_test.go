@@ -24,4 +24,9 @@ var _ = Describe("Git", func() {
 		branchName := adapters.NewRepository().GetBranchName()
 		Expect(branchName).To(Equal("current-branch-123456789"))
 	})
+
+	It("should get all branch names", func() {
+		branchNames := adapters.NewRepository().GetAllBranchNames()
+		Expect(branchNames).To(Equal([]string{"main", "some-branch-#123"}))
+	})
 })

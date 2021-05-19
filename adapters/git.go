@@ -17,7 +17,9 @@ func (repo GitRepository) GetBranchName() string {
 func (repo GitRepository) DeleteBranch(branchName string) {
 }
 func (repo GitRepository) GetAllBranchNames() []string {
-	return []string{}
+	output, _ := exec.Command("git", "--no-pager", "branch", "--format", "'%(refname:short)'").Output()
+
+	return strings.Split(strings.TrimSpace(string(output)), "\n")
 }
 
 // NewRepository creates  a new repository
