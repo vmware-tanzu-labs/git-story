@@ -2,6 +2,7 @@ package usecases
 
 import (
 	"errors"
+	"os/exec"
 	"regexp"
 	"strconv"
 )
@@ -44,6 +45,6 @@ type Tracker interface {
 // Repository comment TODO maybe move this to a different file?
 type Repository interface {
 	GetBranchName() string
-	DeleteBranch(branchName string)
+	DeleteBranch(branchName string) *exec.Cmd
 	GetAllBranchNames() []string
 }

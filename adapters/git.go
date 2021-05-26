@@ -14,7 +14,10 @@ func (repo GitRepository) GetBranchName() string {
 	return strings.TrimSpace(string(output))
 }
 
-func (repo GitRepository) DeleteBranch(branchName string) {
+func (repo GitRepository) DeleteBranch(branchName string) *exec.Cmd {
+	cmd := exec.Command("git", "branch", "-d", branchName)
+	cmd.Start()
+	return cmd
 }
 func (repo GitRepository) GetAllBranchNames() []string {
 	output, _ := exec.Command("git", "--no-pager", "branch", "--format", "'%(refname:short)'").Output()

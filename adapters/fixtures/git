@@ -10,3 +10,7 @@ if [ "${args}" = "--no-pager branch --format '%(refname:short)'" ]; then
     echo "main"
     echo "some-branch-#123"
 fi
+
+if [ "${args}" = "branch -d some-nonexistent-branch" ]; then
+    exit 1
+fi

@@ -31,8 +31,9 @@ func (mockGitRepo MockGitRepository) GetAllBranchNames() []string {
 	return mockGitRepo.branchNames
 }
 
-func (mockGitRepo *MockGitRepository) DeleteBranch(branchName string) {
+func (mockGitRepo *MockGitRepository) DeleteBranch(branchName string) *exec.Cmd {
 	mockGitRepo.deletedBranches = append(mockGitRepo.deletedBranches, branchName)
+	return nil
 }
 
 type MockPivotalTrackerReader struct {
