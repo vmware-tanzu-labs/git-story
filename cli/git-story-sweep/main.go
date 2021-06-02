@@ -16,5 +16,9 @@ func newTracker() usecases.Tracker {
 
 func main() {
 	tracker := newTracker()
-	usecases.SweepAcceptedStories(adapters.NewRepository(), tracker)
+	error := usecases.SweepAcceptedStories(adapters.NewRepository(), tracker)
+
+	if error != nil {
+		//do something
+	}
 }

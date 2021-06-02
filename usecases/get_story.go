@@ -45,6 +45,6 @@ type Tracker interface {
 // Repository comment TODO maybe move this to a different file?
 type Repository interface {
 	GetBranchName() string
-	DeleteBranch(branchName string) *exec.Cmd
+	DeleteBranch(branchName string) (*exec.Cmd, error)
 	GetAllBranchNames() []string
 }
