@@ -20,8 +20,8 @@ var _ = Describe("Story Sweeper use case", func() {
 	It("should return an error if the branch is unable to be deleted", func() {
 		mockGitRepo := &MockGitRepository{branchNames: []string{"main", "some-accepted-story-#123", "some-wip-story-#234"}, isError: true}
 		mockTrackerReader := MockPivotalTrackerReader{}
-		usecases.SweepAcceptedStories(mockGitRepo, mockTrackerReader)
+		error := usecases.SweepAcceptedStories(mockGitRepo, mockTrackerReader)
 
-		Expect(nil).To(Equal("next: support a nice summary when we delete something"))
+		Expect(error).NotTo(BeNil())
 	})
 })

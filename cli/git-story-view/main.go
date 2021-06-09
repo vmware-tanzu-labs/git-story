@@ -19,8 +19,8 @@ func main() {
 	tracker := newTracker()
 	story, error := usecases.GetStory(adapters.NewRepository(), tracker)
 	if error != nil {
-		fmt.Print(error)
+		fmt.Println(error)
 	} else {
-		fmt.Printf("State: %v\n%v", story.State, story.Description)
+		fmt.Printf("State: %v\n%v\n", story.State, story.Description)
 	}
 }

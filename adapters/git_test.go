@@ -31,14 +31,13 @@ var _ = Describe("Git", func() {
 	})
 
 	It("should delete a branch", func() {
-		cmd, _ := adapters.NewRepository().DeleteBranch("some-accepted-branch-123456789")
-		error := cmd.Wait()
+		error := adapters.NewRepository().DeleteBranch("some-accepted-branch-123456789")
 		Expect(error).To(BeNil())
 	})
 
 	It("should fail to delete when there is a nonexistent branch", func() {
-		cmd, _ := adapters.NewRepository().DeleteBranch("some-nonexistent-branch")
-		error := cmd.Wait()
+		error := adapters.NewRepository().DeleteBranch("some-nonexistent-branch")
 		Expect(error).NotTo(BeNil())
+		Expect(error.Error()).To(Equal("error: branch 'some-nonexistent-branch' not found."))
 	})
 })

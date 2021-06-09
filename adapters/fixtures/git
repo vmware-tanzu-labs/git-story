@@ -6,11 +6,12 @@ if [ "${args}" = "rev-parse --abbrev-ref HEAD" ]; then
     echo "current-branch-123456789"
 fi
 
-if [ "${args}" = "--no-pager branch --format '%(refname:short)'" ]; then
+if [ "${args}" = "--no-pager branch --format %(refname:short)" ]; then
     echo "main"
     echo "some-branch-#123"
 fi
 
-if [ "${args}" = "branch -d some-nonexistent-branch" ]; then
+if [ "${args}" = "branch -D some-nonexistent-branch" ]; then
+    >&2 echo "error: branch 'some-nonexistent-branch' not found."
     exit 1
 fi

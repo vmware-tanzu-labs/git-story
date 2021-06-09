@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/git-story-branch/git-story-branch/adapters"
@@ -19,6 +20,6 @@ func main() {
 	error := usecases.SweepAcceptedStories(adapters.NewRepository(), tracker)
 
 	if error != nil {
-		//do something
+		fmt.Println(error)
 	}
 }

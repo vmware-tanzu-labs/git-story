@@ -19,6 +19,6 @@ func main() {
 	tracker := newTracker()
 	error := usecases.OpenStory(adapters.NewRepository(), tracker, adapters.NewBrowser())
 	if error != nil {
-		fmt.Print(error)
+		fmt.Println(error)
 	}
 }

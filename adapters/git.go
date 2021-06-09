@@ -1,6 +1,7 @@
 package adapters
 
 import (
+	"errors"
 	"os/exec"
 	"strings"
 )
@@ -14,14 +15,16 @@ func (repo GitRepository) GetBranchName() string {
 	return strings.TrimSpace(string(output))
 }
 
-func (repo GitRepository) DeleteBranch(branchName string) (*exec.Cmd, error) {
-	cmd := exec.Command("git", "branch", "-d", branchName)
-	cmd.Start()
-	return cmd, nil
+func (repo GitRepository) DeleteBranch(branchName string) error {
+	cmd := exec.Command("git", "branch", "-D", branchName)
+	output, error := cmd.CombinedOutput()
+	if error != nil {
+		return errors.New(strings.Trim(string(output), "\n"))
+	}
+	return nil
 }
 func (repo GitRepository) GetAllBranchNames() []string {
-	output, _ := exec.Command("git", "--no-pager", "branch", "--format", "'%(refname:short)'").Output()
-
+	output, _ := exec.Command("git", "--no-pager", "branch", "--format", "%(refname:short)").Output()
 	return strings.Split(strings.TrimSpace(string(output)), "\n")
 }
 

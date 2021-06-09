@@ -20,7 +20,7 @@ type MockGitRepository struct {
 	branchName      string
 	branchNames     []string
 	deletedBranches []string
-	isError bool `default:false`
+	isError         bool `default:false`
 }
 
 // TODO rename this to GetCurrentBranchName()
@@ -32,14 +32,14 @@ func (mockGitRepo MockGitRepository) GetAllBranchNames() []string {
 	return mockGitRepo.branchNames
 }
 
-func (mockGitRepo *MockGitRepository) DeleteBranch(branchName string) (*exec.Cmd, error) {
+func (mockGitRepo *MockGitRepository) DeleteBranch(branchName string) error {
 	mockGitRepo.deletedBranches = append(mockGitRepo.deletedBranches, branchName)
-	
-	if mockGitRepo.isError {
-		return nil, errors.New("Kabooooommmmm!")
-	} 
 
-	return nil, nil
+	if mockGitRepo.isError {
+		return errors.New("Kabooooommmmm!")
+	}
+
+	return nil
 }
 
 type MockPivotalTrackerReader struct {
