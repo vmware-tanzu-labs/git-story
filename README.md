@@ -48,6 +48,12 @@ Description goes here...
 $ git story-open
 ```
 
+### git story-sweep : delete all local branches corresponding to accepted stories
+
+```sh
+$ git story-sweep
+```
+
 ## Contributing to Git-Story
 We use [ginkgo](https://github.com/onsi/ginkgo) for testing.
 

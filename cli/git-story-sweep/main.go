@@ -17,9 +17,18 @@ func newTracker() usecases.Tracker {
 
 func main() {
 	tracker := newTracker()
-	error := usecases.SweepAcceptedStories(adapters.NewRepository(), tracker)
+	branchErrors := usecases.SweepAcceptedStories(adapters.NewRepository(), tracker)
 
-	if error != nil {
-		fmt.Println(error)
+	hasError := false
+	for branchName, error := range branchErrors {
+		if error != nil {
+			hasError = true
+			fmt.Printf("Could not delete '%s', %s\n", branchName, error)
+		} else {
+			fmt.Printf("Deleted '%s'\n", branchName)
+		}
+	}
+	if hasError {
+		os.Exit(1)
 	}
 }

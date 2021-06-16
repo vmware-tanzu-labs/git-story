@@ -10,7 +10,7 @@ import (
 var _ = Describe("Browser Opener use case", func() {
 	Describe("when the current branch is a story ID", func() {
 		It("should open the browser to the URL of the story", func() {
-			mockGitRepo := &MockGitRepository{branchName: "Insert Branch Name Here-#1234567890"}
+			mockGitRepo := &MockGitRepository{currentBranchName: "Insert Branch Name Here-#1234567890"}
 			browserSpy := &BrowserSpy{}
 			mockTrackerReader := MockPivotalTrackerReader{}
 
@@ -22,7 +22,7 @@ var _ = Describe("Browser Opener use case", func() {
 	})
 	Describe("when the current branch is not a story ID", func() {
 		It("should return an error", func() {
-			mockGitRepo := &MockGitRepository{branchName: "main"}
+			mockGitRepo := &MockGitRepository{currentBranchName: "main"}
 			browserSpy := &BrowserSpy{}
 			mockTrackerReader := MockPivotalTrackerReader{}
 
@@ -34,7 +34,7 @@ var _ = Describe("Browser Opener use case", func() {
 	})
 	Describe("when the Tracker API returns an error", func() {
 		It("should return an error", func() {
-			mockGitRepo := &MockGitRepository{branchName: "Insert Branch Name Here-#1234567890"}
+			mockGitRepo := &MockGitRepository{currentBranchName: "Insert Branch Name Here-#1234567890"}
 			browserSpy := &BrowserSpy{}
 			mockTrackerReader := MockPivotalTrackerReader{isBroken: true}
 

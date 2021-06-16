@@ -6,13 +6,6 @@ import (
 	"strconv"
 )
 
-type Story struct {
-	ID          int
-	Description string
-	State       string
-	URL         string
-}
-
 func getPivotalTrackerTaskID(branchName string) (int, error) {
 	re := regexp.MustCompile(`\d+$`)
 	taskIDString := re.FindString(branchName)
@@ -22,7 +15,7 @@ func getPivotalTrackerTaskID(branchName string) (int, error) {
 
 // GetStory comment
 func GetStory(repo Repository, tracker Tracker) (*Story, error) {
-	currentBranchName := repo.GetBranchName()
+	currentBranchName := repo.GetCurrentBranchName()
 	return GetStoryByBranchName(currentBranchName, tracker)
 }
 
@@ -34,16 +27,4 @@ func GetStoryByBranchName(branchName string, tracker Tracker) (*Story, error) {
 	}
 
 	return tracker.GetStory(storyID)
-}
-
-// Tracker comment
-type Tracker interface {
-	GetStory(storyID int) (*Story, error)
-}
-
-// Repository comment TODO maybe move this to a different file?
-type Repository interface {
-	GetBranchName() string
-	DeleteBranch(branchName string) error
-	GetAllBranchNames() []string
 }

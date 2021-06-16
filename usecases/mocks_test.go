@@ -17,15 +17,14 @@ func (browserSpy *BrowserSpy) OpenURL(URL string) (*exec.Cmd, error) {
 }
 
 type MockGitRepository struct {
-	branchName      string
-	branchNames     []string
-	deletedBranches []string
-	isError         bool `default:false`
+	currentBranchName string
+	branchNames       []string
+	deletedBranches   []string
+	erroredBranches   []string
 }
 
-// TODO rename this to GetCurrentBranchName()
-func (mockGitRepo MockGitRepository) GetBranchName() string {
-	return mockGitRepo.branchName
+func (mockGitRepo MockGitRepository) GetCurrentBranchName() string {
+	return mockGitRepo.currentBranchName
 }
 
 func (mockGitRepo MockGitRepository) GetAllBranchNames() []string {
@@ -35,10 +34,11 @@ func (mockGitRepo MockGitRepository) GetAllBranchNames() []string {
 func (mockGitRepo *MockGitRepository) DeleteBranch(branchName string) error {
 	mockGitRepo.deletedBranches = append(mockGitRepo.deletedBranches, branchName)
 
-	if mockGitRepo.isError {
-		return errors.New("Kabooooommmmm!")
+	for _, erroredBranch := range mockGitRepo.erroredBranches {
+		if branchName == erroredBranch {
+			return errors.New("Kabooooommmmm!")
+		}
 	}
-
 	return nil
 }
 
