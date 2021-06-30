@@ -13,7 +13,7 @@ At least, it will, some day.
 
 ## Installation
 
-1. Configure your [Pivotal Tracker API token](https://www.pivotaltracker.com/help/articles/api_token/)
+1. Configure your [Pivotal Tracker API token](https://www.pivotaltracker.com/help/articles/api_token/). This is necessary if your Tracker project is private.
 
 ```sh
 export TRACKER_API_TOKEN="YOUR PIVOTAL TRACKER API TOKEN" # https://www.pivotaltracker.com/help/articles/api_token/
