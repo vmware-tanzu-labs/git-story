@@ -9,7 +9,24 @@ With the power of `git-story`, this allows you to:
 3. ~~Automatically unsubscribe from unwanted spam emails~~
 4. ~~Be reminded if you haven't watered your plants recently~~
 
-At least, it will, some day.
+## What? Why?
+
+Git branches. We've all got 'em. And when you've got a lot of them, it can get kind of confusing:
+
+```sh
+git branch
+#   EOD-sockjs-spike
+#   WIP-service-refactor
+#   feature/ui-rewrite
+#   feature/ui-rewrite-fixed
+# * main
+#   uiRewrite
+```
+Which branch should we use for that UI Rewrite feature? And how do we know if any of these branches can be deleted?
+
+I humbly suggest that you **add your story ID to your branch name**, so that it becomes easier to identify which story you're actively working on, and easier to identify whether or not a branch corresponds to an accepted feature and can be safely deleted. If `feature/ui-rewrite` was instead `feature/ui-rewrite-1234567890`, we'd know exactly which story it was associated with.
+
+If you take me up on this suggestion, then `git-story` becomes a truly useful tool!
 
 ## Installation
 
@@ -19,7 +36,7 @@ At least, it will, some day.
 export TRACKER_API_TOKEN="YOUR PIVOTAL TRACKER API TOKEN" # https://www.pivotaltracker.com/help/articles/api_token/
 ```
 
-2. Setup the homebrew tap and install git-story
+2. Install `git-story` via Homebrew
 
 ```sh
 brew install git-story-branch/tap/git-story
@@ -27,11 +44,7 @@ brew install git-story-branch/tap/git-story
 
 ## Usage
 
-`git-story` is useful when your git branch name ends in the story ID of the Pivotal Tracker story you're working on:
-
-```sh
-git checkout WIP-some-story-1234567890
-```
+Assuming that the name of your current branch ends in a story ID, you can do all of the following cool tricks from the comfort of your terminal:
 
 ### git story-view : view the details of a story
 
