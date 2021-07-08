@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/git-story-branch/git-story-branch/adapters"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/vmware-tanzu-labs/git-story/adapters"
 )
 
 var _ = Describe("Browser", func() {

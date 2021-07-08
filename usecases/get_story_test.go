@@ -4,7 +4,7 @@ import (
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 
-	usecases "github.com/git-story-branch/git-story-branch/usecases"
+	usecases "github.com/vmware-tanzu-labs/git-story/usecases"
 )
 
 var _ = Describe("Git Tracker name translator", func() {

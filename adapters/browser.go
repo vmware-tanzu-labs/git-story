@@ -3,7 +3,7 @@ package adapters
 import (
 	"os/exec"
 
-	"github.com/git-story-branch/git-story-branch/usecases"
+	"github.com/vmware-tanzu-labs/git-story/usecases"
 )
 
 type Browser struct{}

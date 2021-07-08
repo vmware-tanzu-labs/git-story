@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/git-story-branch/git-story-branch/adapters"
-	"github.com/git-story-branch/git-story-branch/usecases"
+	"github.com/vmware-tanzu-labs/git-story/adapters"
+	"github.com/vmware-tanzu-labs/git-story/usecases"
 	"gopkg.in/salsita/go-pivotaltracker.v2/v5/pivotal"
 )
 

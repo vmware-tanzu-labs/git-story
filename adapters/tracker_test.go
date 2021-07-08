@@ -4,9 +4,9 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/git-story-branch/git-story-branch/adapters"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
+	"github.com/vmware-tanzu-labs/git-story/adapters"
 	"gopkg.in/salsita/go-pivotaltracker.v2/v5/pivotal"
 )
 

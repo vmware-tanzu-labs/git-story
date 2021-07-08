@@ -3,7 +3,7 @@ package adapters
 import (
 	"net/http"
 
-	"github.com/git-story-branch/git-story-branch/usecases"
+	"github.com/vmware-tanzu-labs/git-story/usecases"
 	"gopkg.in/salsita/go-pivotaltracker.v2/v5/pivotal"
 )
 

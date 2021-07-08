@@ -1,4 +1,4 @@
-module github.com/git-story-branch/git-story-branch
+module github.com/vmware-tanzu-labs/git-story
 
 go 1.15
 
